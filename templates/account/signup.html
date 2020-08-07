@@ -1,0 +1,21 @@
+{% extends "account/base.html" %} {% load crispy_forms_tags %} {% load i18n %} {% block head_title %}{% trans "Signup" %}{% endblock %} {% block content %}
+<div class="container">
+    <section class="mb-4">
+        <div class="row wow fadeIn">
+            <div class="col-6 offset-3">
+                <h1>{% trans "Đăng Ký" %}</h1>
+
+                <p>{% blocktrans %}Bạn đã có tài khoản? Vui lòng <a href="{{ login_url }}">Đăng nhập</a> ở đây.{% endblocktrans %}</p>
+
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %} {{ form|crispy }}
+                    <!-- {{ form|crispy }}  -->
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> {% endif %}
+                    <button type="submit" class="btn btn-primary">{% trans "Đăng Ký" %} &raquo;</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
