@@ -62,10 +62,16 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfile')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_ROOT = "E:/HRLAPP/shopL/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -112,10 +118,7 @@ STRIPE_SECRET_KEY = 'sk_test_51HBehgKHBhzwvZk1OtcoZQETPbDz2jYPeUVNvmc7O1Hy2ZBTgP
 #     STRIPE_PUBLISHABLE_KEY = 'pk_test_51HBehgKHBhzwvZk10P5A2R1JeBAD4XM0fE5fm9SR15ZbffUAsrdwF8UTFQRh5V2bDB8MmYkIFOzUFUxyZNWUPXjL00ZA9FgPK3'
 #     STRIPE_SECRET_KEY = 'sk_test_51HBehgKHBhzwvZk1OtcoZQETPbDz2jYPeUVNvmc7O1Hy2ZBTgP8vhWemuePvuxh3gXYechkIyWHp2j9yi1vq9urf00aPCDtE2N'
 
-# if __name__ == "__main__":
-#     port = int(os.environ.get("PORT", 5000))
-#     app.run(host="0.0.0.0", port=port)
 
-# STATICFILES_STORAGE = (
-#     'whitenoise.django.GzipManifestStaticFilesStorage'
-# )
+MIDDLEWARE_CLASSES = ('whitenoise.middleware.WhiteNoiseMiddleware',)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
